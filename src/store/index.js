@@ -120,7 +120,8 @@ export const store = new Vuex.Store({
             let res = {}
             let address = getters.getCoinBase
             res.balanceTokenOld = await contractOld.methods.balanceOf(address).call();
-            console.log(res)
+            res.balanceTokenOld = web3conn.utils.fromWei(res.balanceTokenOld, 'gwei');
+            //console.log(res)
             commit('registerSwapperInstance', res);
         }
     },

@@ -128,10 +128,10 @@ export default {
                 swapjson,
                 "0xccFcf91241FD00279D5F17B3121fF17E33b7a76c"
             );
-            let amountWei = web3conn.utils.toWei(this.amount);
+            let amountGwei = web3conn.utils.toWei(this.amount, 'gwei');
             let vm = this;
             contractSwap.methods
-                .minibnbswap(amountWei)
+                .minibnbswap(amountGwei)
                 .send({ from: this.web3.coinbase })
                 .on("confirmation", function (receipt) {
                     vm.success = true;
