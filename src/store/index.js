@@ -41,12 +41,46 @@ export const store = new Vuex.Store({
                 //await window.ethereum.enable();
                 await window.ethereum.request({ method: 'eth_requestAccounts' });
                 const web3 = new Web3(window.ethereum);
-                try {
-                    // check if the chain to connect to is installed
-                    await window.ethereum.request({
-                        method: 'wallet_switchEthereumChain',
-                        params: [{ chainId: '0x38' }], // chainId must be in hexadecimal numbers
-                    });
+                let chainId = await web3.eth.getChainId();
+                let success = 0;
+                if (chainId != 56) {
+                    try {
+                        // check if the chain to connect to is installed
+                        await window.ethereum.request({
+                            method: 'wallet_switchEthereumChain',
+                            params: [{ chainId: '0x38' }], // chainId must be in hexadecimal numbers
+                        });
+                        success = 1;
+                    } catch (error) {
+                        // This error code indicates that the chain has not been added to MetaMask
+                        // if it is not, then install it into the user MetaMask
+                        if (error.code === 4902) {
+                            try {
+                                await window.ethereum.request({
+                                    method: 'wallet_addEthereumChain',
+                                    params: [{
+                                        chainId: '0x38',
+                                        chainName: 'Binance Smart Chain',
+                                        nativeCurrency: {
+                                            name: 'Binance Coin',
+                                            symbol: 'BNB',
+                                            decimals: 18
+                                        },
+                                        rpcUrls: ['https://bsc-dataseed.binance.org/'],
+                                        blockExplorerUrls: ['https://bscscan.com']
+                                    }]
+                                });
+                                success = 1;
+                            } catch (addError) {
+                                console.error(addError);
+                            }
+                        }
+                        console.error(error);
+                    }
+                } else {
+                    success = 1;
+                }
+                if (success == 1) {
                     let res = {}
                     web3.eth.getCoinbase()
                         .then(result => {
@@ -57,40 +91,6 @@ export const store = new Vuex.Store({
                                     commit('registerWeb3Instance', res);
                                 })
                         });
-                } catch (error) {
-                    // This error code indicates that the chain has not been added to MetaMask
-                    // if it is not, then install it into the user MetaMask
-                    if (error.code === 4902) {
-                        try {
-                            await window.ethereum.request({
-                                method: 'wallet_addEthereumChain',
-                                params: [{
-                                    chainId: '0x38',
-                                    chainName: 'Binance Smart Chain',
-                                    nativeCurrency: {
-                                        name: 'Binance Coin',
-                                        symbol: 'BNB',
-                                        decimals: 18
-                                    },
-                                    rpcUrls: ['https://bsc-dataseed.binance.org/'],
-                                    blockExplorerUrls: ['https://bscscan.com']
-                                }]
-                            });
-                            let res = {}
-                            web3.eth.getCoinbase()
-                                .then(result => {
-                                    res.coinbase = result;
-                                    web3.eth.getBalance(res.coinbase)
-                                        .then(result => {
-                                            res.balance = result;
-                                            commit('registerWeb3Instance', res);
-                                        })
-                                });
-                        } catch (addError) {
-                            console.error(addError);
-                        }
-                    }
-                    console.error(error);
                 }
             } else {
                 // if no window.ethereum then MetaMask is not installed
