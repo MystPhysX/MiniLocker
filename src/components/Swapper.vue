@@ -35,9 +35,11 @@
                                 @click="approve()"
                                 v-html="approveBTN"
                             ></b-button>
-                            <b-button v-if="approval" @click="send()" v-html="sendBTN"
-                                ></b-button
-                            >
+                            <b-button
+                                v-if="approval"
+                                @click="send()"
+                                v-html="sendBTN"
+                            ></b-button>
                         </b-card>
                     </b-col>
                 </b-row>
@@ -63,7 +65,7 @@ export default {
             errorMsg: "",
             sendBTN: "Send",
             success: false,
-            successMsg: ""
+            successMsg: "",
         };
     },
     computed: {
@@ -98,8 +100,8 @@ export default {
                 "0xBddfE03f24C09505fB2DB5F9dF1589DAB17DdaAe"
             );
             let vm = this;
-            let amountGwei = web3conn.utils.toWei(this.amount, 'gwei');
-            console.log(amountGwei)
+            let amountGwei = web3conn.utils.toWei(this.amount, "gwei");
+            console.log(amountGwei);
             contractOld.methods
                 .approve(this.web3.coinbase, amountGwei)
                 .send({ from: this.web3.coinbase })
@@ -128,7 +130,7 @@ export default {
                 swapjson.output.abi,
                 "0xccFcf91241FD00279D5F17B3121fF17E33b7a76c"
             );
-            let amountGwei = web3conn.utils.toWei(this.amount, 'gwei');
+            let amountGwei = web3conn.utils.toWei(this.amount, "gwei");
             let vm = this;
             contractSwap.methods
                 .minibnbswap(amountGwei)
@@ -136,13 +138,16 @@ export default {
                 .on("confirmation", function (receipt) {
                     vm.balance();
                     vm.success = true;
-                    vm.successMsg = vm.amount + " MINIBNB successfully sent. Tx is " + receipt.transactionHash
-                    vm.successBTN = "Send";
+                    vm.successMsg =
+                        vm.amount +
+                        " MINIBNB successfully sent. Tx is " +
+                        receipt.transactionHash;
+                    vm.sendBTN = "Send";
                 })
                 .on("error", function (error) {
                     vm.error = true;
                     vm.errorMsg = error.message;
-                    vm.successBTN = "Send";
+                    vm.sendBTN = "Send";
                 });
         },
         balance() {
