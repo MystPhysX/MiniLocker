@@ -39,7 +39,7 @@ export const store = new Vuex.Store({
             // MetaMask injects the global API into window.ethereum
             if (window.ethereum) {
                 //await window.ethereum.enable();
-                await window.ethereum.request({ method: 'eth_requestAccounts'});
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
                 const web3 = new Web3(window.ethereum);
                 try {
                     // check if the chain to connect to is installed
@@ -64,12 +64,17 @@ export const store = new Vuex.Store({
                         try {
                             await window.ethereum.request({
                                 method: 'wallet_addEthereumChain',
-                                params: [
-                                    {
-                                        chainId: '0x38',
-                                        rpcUrl: 'https://bsc-dataseed.binance.org/',
+                                params: [{
+                                    chainId: '0x38',
+                                    chainName: 'Binance Smart Chain',
+                                    nativeCurrency: {
+                                        name: 'Binance Coin',
+                                        symbol: 'BNB',
+                                        decimals: 18
                                     },
-                                ],
+                                    rpcUrls: ['https://bsc-dataseed.binance.org/'],
+                                    blockExplorerUrls: ['https://bscscan.com']
+                                }]
                             });
                             let res = {}
                             web3.eth.getCoinbase()
