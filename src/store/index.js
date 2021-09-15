@@ -75,6 +75,7 @@ export const store = new Vuex.Store({
                                 console.error(addError);
                             }
                         }
+                        alert("Wrong Chain. Please manually switch the chain in your wallet to the Binance Smart Chain and try again.")
                         console.error(error);
                     }
                 } else {
@@ -119,7 +120,6 @@ export const store = new Vuex.Store({
             let res = {}
             let address = getters.getCoinBase
             res.balanceTokenOld = await contractOld.methods.balanceOf(address).call();
-            res.balanceTokenOld = web3conn.utils.fromWei(res.balanceTokenOld);
             console.log(res)
             commit('registerSwapperInstance', res);
         }

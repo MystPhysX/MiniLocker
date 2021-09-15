@@ -97,10 +97,9 @@ export default {
                 oldjson,
                 "0xBddfE03f24C09505fB2DB5F9dF1589DAB17DdaAe"
             );
-            let amountWei = web3conn.utils.toWei(this.amount);
             let vm = this;
             contractOld.methods
-                .approve(this.web3.coinbase, amountWei)
+                .approve(this.web3.coinbase, amount)
                 .send({ from: this.web3.coinbase })
                 .on("confirmation", function () {
                     vm.approval = true;
@@ -125,7 +124,7 @@ export default {
             var web3conn = new Web3(window.ethereum);
             const contractSwap = new web3conn.eth.Contract(
                 swapjson,
-                "0x8e694d8eba45e520584b8afbb46da689c9a6135f"
+                "0xccFcf91241FD00279D5F17B3121fF17E33b7a76c"
             );
             let amountWei = web3conn.utils.toWei(this.amount);
             let vm = this;
