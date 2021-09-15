@@ -1,0 +1,363 @@
+{
+    "compiler": {
+        "version": "0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+        "abi": [
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_MINIBNBADDRESS",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "_MINIBNBADDRESSv2",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "tokenAddress",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "sender",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "MiniBNBv1deposited",
+                "type": "event"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "tokenAddress",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "receiver",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "MiniBNBv2swapped",
+                "type": "event"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "previousOwner",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "newOwner",
+                        "type": "address"
+                    }
+                ],
+                "name": "OwnershipTransferred",
+                "type": "event"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_tokenAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "DepositToken",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "MINIBNBADDRESS",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "MINIBNBADDRESSv2",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "Minishow",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "tokenAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "minibnbcontributor",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "tokenAmount",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "swapbool",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "Miniswapbalance",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "Miniswapcollected",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "minibnbswap",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "miniswaper",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "owner",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "renounceOwnership",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "uniswap",
+                        "type": "bool"
+                    }
+                ],
+                "name": "swapenablecheck",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "newOwner",
+                        "type": "address"
+                    }
+                ],
+                "name": "transferOwnership",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "withdrawBNBV1",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "withdrawBNBV2",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ],
+        "devdoc": {
+            "kind": "dev",
+            "methods": {
+                "owner()": {
+                    "details": "Returns the address of the current owner."
+                },
+                "renounceOwnership()": {
+                    "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+                },
+                "transferOwnership(address)": {
+                    "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+                }
+            },
+            "version": 1
+        },
+        "userdoc": {
+            "kind": "user",
+            "methods": {},
+            "version": 1
+        }
+    },
+    "settings": {
+        "compilationTarget": {
+            "contracts/MiniSwap.sol": "Miniswap"
+        },
+        "evmVersion": "istanbul",
+        "libraries": {},
+        "metadata": {
+            "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+            "enabled": false,
+            "runs": 200
+        },
+        "remappings": []
+    },
+    "sources": {
+        "contracts/Context.sol": {
+            "keccak256": "0xd3e88da8695a1d63936f7bbf3b3441056c44d167e679a80f9a1b5ffafb11fad9",
+            "license": "MIT",
+            "urls": [
+                "bzz-raw://587786c556944a0a561b5f5ab16716263b42ca8dd6cc1102b75f4c4d1a802325",
+                "dweb:/ipfs/QmU9Y13bBrVy2uE4TiHfPSTFQXV2BeUnxrMo135zRy7wJT"
+            ]
+        },
+        "contracts/IBEP20.sol": {
+            "keccak256": "0xe246286985a0d6ab2853ee9305ef82b1dfd1bf043e17dfa5b996807c522e9a4a",
+            "license": "UNLICENSED",
+            "urls": [
+                "bzz-raw://f75b1ab93692b3b699a8e1424dcc01093cf00c9bf11c3f5f11e5c9b866170a4c",
+                "dweb:/ipfs/QmUctgmm5C8R57nyG71B6QQqR6x8faHe863yNv5juheGLc"
+            ]
+        },
+        "contracts/MiniSwap.sol": {
+            "keccak256": "0xdb64cf53555c1a02ade5fccc77c34882896cab4d2e21e6cb3a8bce0ec03f6946",
+            "license": "UNLICENSED",
+            "urls": [
+                "bzz-raw://a2cfc6e048db8449a83d991f2450f6a9d7a6e0faa1d6a07763b990285b114b0c",
+                "dweb:/ipfs/QmU5mPd9xySpyeLTozzNF5jhhym9yonU3nzwXyN4HbgDpQ"
+            ]
+        },
+        "contracts/Ownable.sol": {
+            "keccak256": "0xe9b6d6be0e072f066b10c1771a97128940247491db0a4b8709e9a1ebe9ecc3cf",
+            "license": "MIT",
+            "urls": [
+                "bzz-raw://c0c8d47423b3b93b46c37594a6fca4c11209f51fa1abf549230a42684c44b325",
+                "dweb:/ipfs/QmNvem1XmBfP8163F3Y4W8DZXofYqKPLRiPqeiGTjq5sN3"
+            ]
+        },
+        "contracts/SafeMath.sol": {
+            "keccak256": "0x25931921ce5306bd503a87d9969a134ac0255779c22592cc711945f62452c700",
+            "license": "MIT",
+            "urls": [
+                "bzz-raw://45890695bd800318cdf3aa288e361494ce4749927645ed465bd033bf0c258b67",
+                "dweb:/ipfs/QmcEpfocUGdcEbx5M6gErzjr5xdbpAa8GkJVX7Mz9Mf73u"
+            ]
+        }
+    },
+    "version": 1
+}
