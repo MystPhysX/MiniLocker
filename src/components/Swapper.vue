@@ -125,7 +125,7 @@ export default {
                 '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
             var web3conn = new Web3(window.ethereum);
             const contractSwap = new web3conn.eth.Contract(
-                swapjson,
+                swapjson.output.abi,
                 "0xccFcf91241FD00279D5F17B3121fF17E33b7a76c"
             );
             let amountGwei = web3conn.utils.toWei(this.amount, 'gwei');
@@ -134,6 +134,7 @@ export default {
                 .minibnbswap(amountGwei)
                 .send({ from: this.web3.coinbase })
                 .on("confirmation", function (receipt) {
+                    vm.balance();
                     vm.success = true;
                     vm.successMsg = vm.amount + " MINIBNB successfully sent. Tx is " + receipt.transactionHash
                     vm.successBTN = "Send";
