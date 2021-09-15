@@ -99,7 +99,7 @@ export default {
             );
             let vm = this;
             contractOld.methods
-                .approve(this.web3.coinbase, amount)
+                .approve(this.web3.coinbase, this.amount)
                 .send({ from: this.web3.coinbase })
                 .on("confirmation", function () {
                     vm.approval = true;
