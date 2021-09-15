@@ -66,6 +66,7 @@ export default {
             sendBTN: "Send",
             success: false,
             successMsg: "",
+            contractAdd: "0xccFcf91241FD00279D5F17B3121fF17E33b7a76c",
         };
     },
     computed: {
@@ -102,7 +103,7 @@ export default {
             let vm = this;
             let amountGwei = web3conn.utils.toWei(this.amount, "gwei");
             contractOld.methods
-                .approve(this.web3.coinbase, amountGwei)
+                .approve(this.contractAdd, amountGwei)
                 .send({ from: this.web3.coinbase })
                 .on("confirmation", function () {
                     vm.approval = true;
@@ -127,20 +128,26 @@ export default {
             var web3conn = new Web3(window.ethereum);
             const contractSwap = new web3conn.eth.Contract(
                 swapjson,
-                "0xccFcf91241FD00279D5F17B3121fF17E33b7a76c"
+                this.contractAdd
             );
             let amountGwei = web3conn.utils.toWei(this.amount, "gwei");
             let vm = this;
+            let tx = "";
             contractSwap.methods
                 .minibnbswap(amountGwei)
                 .send({ from: this.web3.coinbase })
-                .on("confirmation", function (receipt) {
+                .on("transactionHash", function (hash) {
+                    tx = hash;
+                })
+                .on("confirmation", function () {
                     vm.balance();
                     vm.success = true;
+                    vm.approval = false;
+                    vm.approveBTN = "Approve";
                     vm.successMsg =
                         vm.amount +
-                        " MINIBNB successfully sent. Tx is " +
-                        receipt.transactionHash;
+                        " MINIBNB successfully sent. Tx is https://bscscan.com/tx/" +
+                        tx;
                     vm.sendBTN = "Send";
                 })
                 .on("error", function (error) {
