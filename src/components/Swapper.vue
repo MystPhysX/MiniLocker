@@ -98,8 +98,9 @@ export default {
                 "0xBddfE03f24C09505fB2DB5F9dF1589DAB17DdaAe"
             );
             let vm = this;
+            let amountWei = web3conn.utils.toWei(this.amount);
             contractOld.methods
-                .approve(this.web3.coinbase, this.amount)
+                .approve(this.web3.coinbase, amountWei)
                 .send({ from: this.web3.coinbase })
                 .on("confirmation", function () {
                     vm.approval = true;
