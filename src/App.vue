@@ -69,4 +69,8 @@ $theme-colors: (
 .btn {
     margin: 1em;
 }
+
+.inlineBtn {
+    margin: 0em;
+}
 </style>

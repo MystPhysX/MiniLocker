@@ -19,11 +19,17 @@
                                 >Balance:
                                 {{ web3.balanceTokenOld }} MINIBNB</b-card-text
                             >
-                            <b-form-input
-                                v-model="amount"
-                                placeholder="Amount..."
-                                type="number"
-                            ></b-form-input>
+                            <b-input-group>
+                                <b-form-input
+                                    v-model="amount"
+                                    placeholder="Amount..."
+                                    type="number"
+                                    step="any"
+                                ></b-form-input>
+                                <b-input-group-append>
+                                    <b-button class="inlineBtn" @click="setMax()">Max</b-button>
+                                </b-input-group-append>
+                            </b-input-group>
                             <b-alert :show="error" variant="danger">{{
                                 errorMsg
                             }}</b-alert>
@@ -158,6 +164,9 @@ export default {
         },
         balance() {
             this.$store.dispatch("registerSwapper");
+        },
+        setMax() {
+            this.amount = this.web3.balanceTokenOld;
         },
     },
     watch: {
