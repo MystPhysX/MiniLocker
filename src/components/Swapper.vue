@@ -7,7 +7,8 @@
             >Connect Wallet</b-button
         >
         <div class="connected" v-if="!showConnect">
-            <b-container>
+            <p v-if="maintenance">Under Maintenance</p>
+            <b-container v-if="maintenance">
                 <b-row align-h="center">
                     <b-col sm="6">
                         <b-card
@@ -73,6 +74,7 @@ export default {
             success: false,
             successMsg: "",
             contractAdd: "0xccFcf91241FD00279D5F17B3121fF17E33b7a76c",
+            maintenance: false
         };
     },
     computed: {
@@ -179,4 +181,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+p {
+    font-size: 6em;
+    font-weight: bold;
+    -webkit-text-stroke: 1px black;
+    margin-top: 1em;
+}
 </style>
