@@ -7,7 +7,7 @@
             >Connect Wallet</b-button
         >
         <div class="connected" v-if="!showConnect">
-            <p v-if="maintenance">Under Maintenance</p>
+            <p v-if="!maintenance">Under Maintenance</p>
             <b-container v-if="maintenance">
                 <b-row align-h="center">
                     <b-col sm="6">
